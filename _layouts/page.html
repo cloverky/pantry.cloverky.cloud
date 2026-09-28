@@ -1,0 +1,147 @@
+---
+layout: default
+---
+<div class="page-with-sidebar">
+  {%- include sidebar.html -%}
+  <main class="page-main">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+      </header>
+      <div class="post-content e-content" itemprop="articleBody">
+        {{ content }}
+      </div>
+    </article>
+  </main>
+</div>
+
+<style>
+  /* ── 2-column layout ── */
+  .page-with-sidebar {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* ── Sidebar ── */
+  .site-sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 28px 16px 40px 0;
+    border-right: 1px solid #eee;
+    scrollbar-width: thin;
+    scrollbar-color: #ddd transparent;
+  }
+  .site-sidebar::-webkit-scrollbar { width: 4px; }
+  .site-sidebar::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+
+  .sidebar-home {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #828282;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+  }
+  .sidebar-home:hover { color: #2E8B57; }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .sidebar-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-link {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #4b5563;
+    text-decoration: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+  .sidebar-link:hover { background: #f3f4f6; color: #2E8B57; }
+  .sidebar-link.current {
+    background: #E8F5EE;
+    color: #2E8B57;
+    font-weight: 700;
+  }
+  .sidebar-group.active > .sidebar-link {
+    color: #2E8B57;
+  }
+
+  .sidebar-children {
+    list-style: none;
+    margin: 2px 0 4px;
+    padding: 0 0 0 12px;
+    border-left: 2px solid #CFE9D8;
+  }
+  .sidebar-children li { margin: 0; }
+  .sidebar-child-link {
+    display: block;
+    font-size: 12px;
+    color: #6b7280;
+    text-decoration: none;
+    padding: 3px 6px;
+    border-radius: 4px;
+    word-break: keep-all;
+    line-height: 1.4;
+  }
+  .sidebar-child-link:hover { color: #2E8B57; background: #f3f4f6; }
+
+  /* ── Main content ── */
+  .page-main {
+    flex: 1;
+    min-width: 0;
+    padding: 28px 0 60px 36px;
+  }
+
+  /* ── Override minima wrapper to allow sidebar layout ── */
+  .page-content > .wrapper {
+    max-width: 1160px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  /* ── Mobile: sidebar collapses ── */
+  @media (max-width: 768px) {
+    .page-with-sidebar {
+      flex-direction: column;
+    }
+    .site-sidebar {
+      width: 100%;
+      position: static;
+      max-height: none;
+      border-right: none;
+      border-bottom: 1px solid #eee;
+      padding: 16px 0 12px;
+      overflow: visible;
+    }
+    .sidebar-children {
+      display: none;
+    }
+    .sidebar-group.active .sidebar-children {
+      display: block;
+    }
+    .page-main {
+      padding: 24px 0 48px;
+    }
+  }
+</style>

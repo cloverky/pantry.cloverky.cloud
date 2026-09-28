@@ -1,0 +1,45 @@
+- title: 프로젝트 소개
+  url: /about/
+
+- title: 1. 사업 개요
+  url: /business-overview/
+  children:
+    - title: 사업 목적
+      url: /business-overview/#purpose
+    - title: 주요 사업 내용
+      url: /business-overview/#content
+    - title: 기대 효과
+      url: /business-overview/#effect
+
+- title: 2. 개발 요구 사항
+  url: /dev-requirements/
+  children:
+    - title: 개발 범위
+      url: /dev-requirements/#scope
+    - title: 재고 관리
+      url: /dev-requirements/#inventory
+    - title: 영수증 → 재고
+      url: /dev-requirements/#receipt
+    - title: AI 추천 · 어시스턴트
+      url: /dev-requirements/#ai
+    - title: 인증 · 보안
+      url: /dev-requirements/#auth
+
+- title: 3. 주요 개발 수행 지침
+  url: /dev-guidelines/
+  children:
+    - title: 아키텍처 원칙
+      url: /dev-guidelines/#architecture
+    - title: 하네스
+      url: /dev-guidelines/#harness
+    - title: 설계 문서
+      url: /dev-guidelines/#docs
+
+- title: 4. 부록
+  url: /appendix/
+  children:
+    - title: 용어 정의
+      url: /appendix/#terms
+
+- title: 개발 로그
+  url: /devlog/

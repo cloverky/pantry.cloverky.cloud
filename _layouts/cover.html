@@ -1,0 +1,230 @@
+---
+layout: default
+---
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+
+<div class="cover-page">
+  <div class="cover-inner">
+
+    {%- if page.eyebrow -%}
+    <p class="cover-eyebrow"><span class="bar"></span>{{ page.eyebrow }}</p>
+    {%- endif -%}
+
+    <h1 class="cover-title">
+      {%- if page.title_l1 and page.title_l2 -%}
+      <span class="cover-title-line">{{ page.title_l1 | escape }}</span>
+      <span class="cover-title-line">{{ page.title_l2 | escape }}</span>
+      {%- else -%}
+      {{ page.title | escape }}
+      {%- endif -%}
+    </h1>
+
+    {%- if page.subtitle_en -%}
+    <p class="cover-subtitle">{{ page.subtitle_en }}</p>
+    {%- endif -%}
+
+    <div class="cover-meta-grid">
+      {%- if page.project_name -%}
+      <div class="meta-card wide">
+        <p class="label">사업명</p>
+        <p class="value">{{ page.project_name }}</p>
+        {%- if page.system_name -%}<p class="note">시스템명: {{ page.system_name }}</p>{%- endif -%}
+      </div>
+      {%- endif -%}
+      <div class="meta-card">
+        <p class="label">개발 기간</p>
+        <p class="value">{{ page.dev_period }}</p>
+        {%- if page.dev_period_note -%}<p class="note">{{ page.dev_period_note }}</p>{%- endif -%}
+      </div>
+      <div class="meta-card">
+        <p class="label">개발팀 · {{ page.dev_team_name }}</p>
+        <p class="value">{{ page.dev_team_members }}</p>
+        {%- if page.dev_team_count -%}<p class="note">{{ page.dev_team_count }}</p>{%- endif -%}
+      </div>
+      <div class="meta-card">
+        <p class="label">문서 작성일</p>
+        <p class="value">{{ site.time | date: "%Y년 %-m월 %-d일" }}</p>
+        <p class="note">push 시 자동 갱신 (마지막 배포 기준)</p>
+      </div>
+      <div class="meta-card wide">
+        <p class="label">GitHub</p>
+        <p class="value">{%- if page.github_url -%}<a href="{{ page.github_url }}">{{ page.github_url | remove: "https://" }}</a>{%- endif -%}</p>
+        {%- if page.doc_repo_url -%}<p class="note">문서 저장소 — <a href="{{ page.doc_repo_url }}">{{ page.doc_repo_url | remove: "https://" }}</a></p>{%- endif -%}
+      </div>
+      {%- if page.doc_url -%}
+      <div class="meta-card">
+        <p class="label">문서 사이트</p>
+        <p class="value"><a href="{{ page.doc_url }}">{{ page.doc_url | remove: "https://" }}</a></p>
+      </div>
+      {%- endif -%}
+      <div class="meta-card cta {%- if page.doc_url -%}{%- else -%} wide{%- endif -%}">
+        <p class="label">데모 사이트</p>
+        <p class="value">{%- if page.demo_url -%}<a href="{{ page.demo_url }}">{{ page.demo_url | remove: "https://" }}</a>{%- endif -%}</p>
+        {%- if page.demo_note -%}<p class="note" style="color:rgba(255,255,255,0.7)">{{ page.demo_note }}</p>{%- endif -%}
+      </div>
+    </div>
+
+    {%- if content != "" and content != nil -%}
+    <div class="cover-body">
+      {{ content }}
+    </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+<style>
+  .cover-page {
+    --accent: #2E8B57;
+    --ink: #12141C;
+    --ink-muted: #6B7280;
+    --line: #E5E7EB;
+
+    background: #ffffff;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    word-break: keep-all;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 72px 24px 96px;
+    box-sizing: border-box;
+  }
+  .cover-inner {
+    text-align: center;
+  }
+
+  .cover-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-indent: 0.35em;
+    color: var(--ink-muted);
+    margin: 0 0 28px;
+  }
+  .cover-eyebrow .bar {
+    width: 3px;
+    height: 14px;
+    background: var(--accent);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .cover-title {
+    font-size: clamp(26px, 4.6vw, 38px);
+    font-weight: 800;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+  }
+  .cover-title-line {
+    display: block;
+  }
+
+  .cover-subtitle {
+    font-size: clamp(12px, 1.5vw, 14.5px);
+    font-weight: 500;
+    color: var(--ink-muted);
+    margin: 0 0 48px;
+  }
+
+  .cover-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    text-align: left;
+  }
+  .meta-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .meta-card.wide {
+    grid-column: 1 / -1;
+  }
+  .meta-card .label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 8px;
+  }
+  .meta-card .value {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.55;
+    margin: 0;
+    word-break: keep-all;
+  }
+  .meta-card .value a {
+    display: block;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .meta-card .value a:hover {
+    text-decoration: underline;
+  }
+  .meta-card .note {
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--ink-muted);
+    margin: 4px 0 0;
+  }
+
+  .meta-card.cta {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .meta-card.cta .label {
+    color: rgba(255, 255, 255, 0.75);
+  }
+  .meta-card.cta .value a {
+    color: #fff;
+  }
+
+  .cover-body {
+    margin-top: 48px;
+    text-align: left;
+  }
+  .cover-body h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 16px;
+    color: var(--ink);
+  }
+  .cover-body table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .cover-body th {
+    background: #F3F4F6;
+    font-weight: 700;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    text-align: left;
+  }
+  .cover-body td {
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 480px) {
+    .cover-page {
+      padding: 56px 20px 72px;
+    }
+    .cover-eyebrow {
+      letter-spacing: 0.22em;
+      text-indent: 0.22em;
+    }
+  }
+</style>

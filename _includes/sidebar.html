@@ -1,0 +1,25 @@
+<aside class="site-sidebar">
+  <a class="sidebar-home" href="/">← 표지</a>
+  <nav class="sidebar-nav">
+    {%- for item in site.data.nav -%}
+      {%- assign is_active = false -%}
+      {%- if item.url == page.url -%}{% assign is_active = true %}{%- endif -%}
+      {%- if item.children -%}
+        {%- for child in item.children -%}
+          {%- assign child_base = child.url | split: "#" | first -%}
+          {%- if child_base == page.url -%}{% assign is_active = true %}{%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      <div class="sidebar-group{% if is_active %} active{% endif %}">
+        <a class="sidebar-link{% if is_active %} current{% endif %}" href="{{ item.url }}">{{ item.title }}</a>
+        {%- if item.children and is_active -%}
+        <ul class="sidebar-children">
+          {%- for child in item.children -%}
+          <li><a class="sidebar-child-link" href="{{ child.url }}">{{ child.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </nav>
+</aside>

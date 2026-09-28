@@ -1,0 +1,20 @@
+title: "FridgeAI : 유통기한 기반 식재료 관리 및 AI 레시피 추천 서비스"
+author: cloverky
+email: hisoyeon04@gmail.com
+description: >-
+  냉장고 속 재료를 기억하고, 먼저 써야 할 것부터 알려주는 AI 식재료 관리.
+baseurl: ""
+url: ""
+twitter_username: cloverky_
+github_username: cloverky
+
+theme: minima
+plugins:
+  - jekyll-feed
+
+header_pages:
+  - about.markdown
+  - devlog.markdown
+
+exclude:
+  - README.md
